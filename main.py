@@ -19,7 +19,7 @@ app.add_middleware(
 async def root():
     return {"message": "Resume Analyzer API is up and running!"}
 
-    
+
 # === FastAPI endpoint for analysis ===
 @app.post("/analyze")
 async def analyze_resume(file: UploadFile = File(...)):
@@ -37,3 +37,7 @@ async def analyze_resume(file: UploadFile = File(...)):
 
     result = analyze_resume_with_gemini(text)
     return {"analysis": result}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
